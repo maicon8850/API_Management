@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +25,10 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
-    // Relacionamento "um para muitos" com a entidade Order
+
+
+    @JsonIgnore
+    // Relacionamento "um para muitos" com a entidade Order Um usuário pode estar associado a vários pedidos, mas cada pedido está associado a um único cliente.
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
