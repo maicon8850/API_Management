@@ -1,5 +1,6 @@
 package MaiconDouglas.API_Management.Entidades;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +12,27 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 @Entity
 @Table(name = "tb_user") // Define o nome da tabela no banco de dados
 public class User implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Define a geração automática de ID
     private Long id;
+    @Setter
     private String name;
+    @Setter
     private String email;
+    @Setter
     private String phone;
+    @Setter
     private String password;
 
 
@@ -41,50 +51,6 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
     }
 
     @Override

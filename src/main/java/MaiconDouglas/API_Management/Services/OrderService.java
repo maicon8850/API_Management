@@ -3,8 +3,9 @@ package MaiconDouglas.API_Management.Services;
 import java.util.List;
 import java.util.Optional;
 
+import MaiconDouglas.API_Management.Entidades.Order;
 import MaiconDouglas.API_Management.Repository.OrderRepository;
-import jakarta.persistence.criteria.Order;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
