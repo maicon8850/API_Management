@@ -5,10 +5,12 @@ import java.util.Arrays;
 
 import MaiconDouglas.API_Management.Entidades.Category;
 import MaiconDouglas.API_Management.Entidades.Order;
+import MaiconDouglas.API_Management.Entidades.Product;
 import MaiconDouglas.API_Management.Entidades.User;
 import MaiconDouglas.API_Management.Enums.OrderStatus;
 import MaiconDouglas.API_Management.Repository.CategoryRepository;
 import MaiconDouglas.API_Management.Repository.OrderRepository;
+import MaiconDouglas.API_Management.Repository.ProductRepository;
 import MaiconDouglas.API_Management.Repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
     @Override
     public void run(String... args) throws Exception {
 
@@ -45,6 +49,15 @@ public class TestConfig implements CommandLineRunner {
         Category cat2 = new Category(null, "Celulares");
         Category cat3 = new Category(null, "Computadores");
 
+
+        Product p1 = new Product(null, "Cadeira Gamer", "Ergonomia e conforto para longas horas de uso.", 799.99, "");
+        Product p2 = new Product(null, "Fone de Ouvido Bluetooth", "Som de alta qualidade com conexão sem fio.", 199.90, "");
+        Product p3 = new Product(null, "Notebook Lenovo Ideapad", "Ideal para estudos e trabalho com desempenho confiável.", 2999.00, "");
+        Product p4 = new Product(null, "Smartphone Galaxy S22", "Tecnologia de ponta com câmeras avançadas.", 4599.00, "");
+        Product p5 = new Product(null, "Livro Java para Iniciantes", "Tudo o que você precisa saber para começar a programar em Java.", 89.90, "");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         // Salvando os usuários no banco de dados
         userRepository.saveAll(Arrays.asList(u1, u2,u3));
