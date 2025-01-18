@@ -8,8 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.Setter;
 
 @Entity
@@ -17,22 +19,35 @@ import lombok.Setter;
 public class Product implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Setter
     private String name;
+
     @Setter
     private String description;
+
     @Setter
     private Double price;
+
     @Setter
     private String imgUrl;
-    @Transient
+
+    @ManyToMany
+    @JoinTable(
+            name = "tb_product_category", // Nome da tabela intermediária
+            joinColumns = @JoinColumn(name = "product_id"), // Chave estrangeira para Product
+            inverseJoinColumns = @JoinColumn(name = "category_id") // Chave estrangeira para Category
+    )
     private Set<Category> categories = new HashSet<>();
+
     public Product() {
     }
+
     public Product(Long id, String name, String description, Double price, String imgUrl) {
         super();
         this.id = id;
@@ -41,6 +56,7 @@ public class Product implements Serializable {
         this.price = price;
         this.imgUrl = imgUrl;
     }
+
     public Long getId() {
         return id;
     }
@@ -64,6 +80,7 @@ public class Product implements Serializable {
     public Set<Category> getCategories() {
         return categories;
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -71,6 +88,7 @@ public class Product implements Serializable {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
