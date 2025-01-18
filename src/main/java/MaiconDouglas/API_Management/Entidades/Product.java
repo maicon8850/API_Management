@@ -22,7 +22,8 @@ public class Product implements Serializable {
 
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // gera automaticamente um id
+
     private Long id;
 
     @Setter
